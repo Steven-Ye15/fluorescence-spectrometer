@@ -1,0 +1,18 @@
+.idea/
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Local/generated notebook output
+data/
+debug_executed*.ipynb
+*.bak
+
+# Local course material and board images kept out of the shared repo
+local_materials/
+*.uf2
+*.pdf
+
+# OS/editor clutter
+.DS_Store
+Thumbs.db
