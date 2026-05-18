@@ -42,9 +42,17 @@ pip install -r requirements.txt
 ```
 
 5. Open `notebooks/spectrometer_control.ipynb` in DataSpell, JupyterLab, or VS Code.
-6. Run the notebook cells from top to bottom.
+6. In the sample measurement cell, set `MODE` to `"fluorescence"` or `"transmittance"`.
+7. Run the notebook cells from top to bottom.
 
 The notebook detects Windows `COM*` ports and macOS `/dev/cu.usbmodem*` ports automatically.
+
+Measurement modes:
+
+| Mode | LED used |
+| --- | --- |
+| Fluorescence | LED1 / GP19 |
+| Transmittance | LED2 / GP21 |
 
 ## Pico Serial Commands
 

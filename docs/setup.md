@@ -53,6 +53,13 @@ notebooks/spectrometer_control.ipynb
 
 Run cells from top to bottom. The notebook should print the detected serial ports and select the Pico automatically.
 
+In the sample measurement cell, choose the mode:
+
+```python
+MODE = "fluorescence"   # uses LED1 / GP19
+MODE = "transmittance"  # uses LED2 / GP21
+```
+
 Typical port names:
 
 ```text
