@@ -1,18 +1,20 @@
-# Fluorescence Spectrometer
+# Pico Spectrometer
 
-CircuitPython and Jupyter/DataSpell control code for a Raspberry Pi Pico fluorescence spectrometer using an AS7341 spectral light sensor.
+CircuitPython firmware plus notebook and desktop-GUI control software for a Raspberry Pi Pico spectrometer using an AS7341 spectral light sensor. The project supports fluorescence measurements with LED1 and transmittance measurements with LED2.
 
 ## Project Layout
 
 ```text
 pico/code.py                  CircuitPython program to copy onto CIRCUITPY
+gui/spectrometer_gui.py       Standalone desktop GUI for measurement and plotting
+gui/README.md                 GUI-specific run notes
 notebooks/spectrometer_control.ipynb
-                              Laptop-side notebook for serial control and plotting
+                              Optional notebook for serial control and plotting
 examples/spectrometer_reading_example.csv
                               Example output format
 docs/setup.md                 Full setup instructions
 docs/troubleshooting.md       Common fixes
-requirements.txt              Python packages for the laptop notebook
+requirements.txt              Python packages for the GUI and notebook
 ```
 
 Do not put a file called `code.py` in the repository root. Jupyter imports Python's built-in `code` module when starting a kernel, and a root-level `code.py` can make the kernel crash.
@@ -35,17 +37,35 @@ Do not put a file called `code.py` in the repository root. Jupyter imports Pytho
    - Windows example: `Copy-Item .\pico\code.py F:\code.py`
    - macOS example: `cp pico/code.py /Volumes/CIRCUITPY/code.py`
 3. Make sure the Pico has the AS7341 CircuitPython libraries in `CIRCUITPY/lib`.
-4. Install the notebook requirements:
+4. Install the laptop-side Python requirements:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-5. Open `notebooks/spectrometer_control.ipynb` in DataSpell, JupyterLab, or VS Code.
-6. In the sample measurement cell, set `MODE` to `"fluorescence"` or `"transmittance"`.
-7. Run the notebook cells from top to bottom.
+5. Run the standalone GUI:
 
-The notebook detects Windows `COM*` ports and macOS `/dev/cu.usbmodem*` ports automatically.
+Windows:
+
+```powershell
+python .\gui\spectrometer_gui.py
+```
+
+macOS:
+
+```bash
+python3 gui/spectrometer_gui.py
+```
+
+The GUI can connect to the Pico, set brightness/gain/integration, take dark and sample readings, plot spectra, save CSV files, and reload saved CSV files.
+
+Optional notebook workflow:
+
+1. Open `notebooks/spectrometer_control.ipynb` in DataSpell, JupyterLab, or VS Code.
+2. In the sample measurement cell, set `MODE` to `"fluorescence"` or `"transmittance"`.
+3. Run the notebook cells from top to bottom.
+
+The GUI and notebook both detect Windows `COM*` ports and macOS `/dev/cu.usbmodem*` ports automatically.
 
 Measurement modes:
 
@@ -56,7 +76,7 @@ Measurement modes:
 
 ## Pico Serial Commands
 
-The notebook sends these commands to the Pico:
+The GUI and notebook send commands like these to the Pico:
 
 ```text
 status
@@ -78,4 +98,4 @@ DONE
 
 ## Notes
 
-Only one program can use the Pico serial port at once. Close Mu, Thonny, Arduino Serial Monitor, or old notebook sessions before running the notebook.
+Only one program can use the Pico serial port at once. Close Mu, Thonny, Arduino Serial Monitor, old notebook sessions, or another GUI instance before connecting.

@@ -43,7 +43,36 @@ conda activate base
 pip install -r requirements.txt
 ```
 
-## 3. Run The Notebook
+The recommended interface is the standalone GUI. The notebook remains available for scripted or teaching workflows.
+
+## 3. Run The GUI
+
+Windows:
+
+```powershell
+python .\gui\spectrometer_gui.py
+```
+
+macOS:
+
+```bash
+python3 gui/spectrometer_gui.py
+```
+
+The GUI provides:
+
+- Pico connection status
+- fluorescence mode with LED1
+- transmittance mode with LED2
+- active LED brightness control
+- gain, integration time, sample count, and settle-time controls
+- plot display
+- command log
+- CSV save and load
+
+Only one program can use the Pico serial port at a time. Close notebook kernels or serial monitors before connecting from the GUI.
+
+## 4. Optional Notebook Workflow
 
 Open:
 
